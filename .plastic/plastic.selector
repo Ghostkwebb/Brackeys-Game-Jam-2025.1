@@ -1,0 +1,4 @@
+repository "Brackeys Game Jam 2025.1@Krypton_Studios@cloud"
+  path "/"
+    br "/main"
+    co "/main"
