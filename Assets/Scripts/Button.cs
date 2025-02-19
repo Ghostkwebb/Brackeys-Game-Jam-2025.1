@@ -10,6 +10,7 @@ public class Button : MonoBehaviour
     public CanvasGroup canvasGroup;
 
     public float fadeDuration = 1.0f;
+    bool couroutineCompleted = false;
 
 
     void Start()
@@ -29,10 +30,14 @@ public class Button : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         StartCoroutine(FadeInCanvas());
+        couroutineCompleted = true;
     }
 
     private IEnumerator FadeInCanvas()
     {
+        if(couroutineCompleted){
+            yield break;
+        }
         float elapsedTime = 0.0f;
         while (elapsedTime < fadeDuration)
         {
