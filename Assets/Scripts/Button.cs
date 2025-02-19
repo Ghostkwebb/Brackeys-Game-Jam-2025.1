@@ -1,13 +1,20 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class Button : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public GameObject parent;
+    public GameObject Canvas;
+    public CanvasGroup canvasGroup;
+
+    public float fadeDuration = 1.0f;
+
 
     void Start()
     {
-        
+        canvasGroup.alpha = 0;
     }
 
     void Update()
@@ -21,6 +28,17 @@ public class Button : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        parent.transform.GetChild(0).gameObject.SetActive(true);
+        StartCoroutine(FadeInCanvas());
+    }
+
+    private IEnumerator FadeInCanvas()
+    {
+        float elapsedTime = 0.0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
+            yield return null;
+        }
     }
 }

@@ -131,13 +131,14 @@ GameObject:
   - component: {fileID: 164849735}
   - component: {fileID: 164849734}
   - component: {fileID: 164849733}
+  - component: {fileID: 164849736}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &164849732
 RectTransform:
   m_ObjectHideFlags: 0
@@ -221,6 +222,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &164849736
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164849731}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &328287242
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +384,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 328287243}
   parent: {fileID: 328287242}
+  Canvas: {fileID: 164849731}
+  canvasGroup: {fileID: 164849736}
+  fadeDuration: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
