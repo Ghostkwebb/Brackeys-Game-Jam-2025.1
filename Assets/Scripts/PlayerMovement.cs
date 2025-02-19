@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 5f;
     public float jumpAmount = 10f;
+    public Button button;
+    public bool onButton = false;
 
     void Start()
     {
@@ -34,5 +36,28 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb2d.linearVelocity.y);
         rb2d.linearVelocity = playerVelocity;
+    }
+
+    void OnInteract(InputValue value)
+    {
+        if (onButton && value.isPressed)
+        {
+            button.Press();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Button"))
+        {
+            onButton = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Button"))
+        {
+            onButton = false;
+        }
     }
 }
