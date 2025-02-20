@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class Button : MonoBehaviour
 
     public void Press(){
         spriteRenderer.color = Color.red;
+        StartCoroutine(LoadNextLevel());
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -45,5 +47,17 @@ public class Button : MonoBehaviour
             canvasGroup.alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
             yield return null;
         }
+    }
+
+    private IEnumerator LoadNextLevel(){
+        yield return new WaitForSecondsRealtime(2);
+        int currentSeceneIndex =  SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSeceneIndex + 1;
+
+        if(nextSceneIndex == SceneManager.sceneCountInBuildSettings){
+            nextSceneIndex = 0;
+        }
+
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }
