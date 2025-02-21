@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb2d;
+    public CapsuleCollider2D col2d;
+    public BoxCollider2D feet;
     Vector2 moveInput;
 
     Animator anim;
@@ -30,18 +32,21 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (!rb2d.IsTouchingLayers(LayerMask.GetMask("Ground"))) 
-        {
-            anim.SetBool("inAir", false);
-            return; 
-        }
+        if (!rb2d.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
+        rb2d.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+       
+    }
 
-        else
+    void jumpAnimation()
+    {
+        if (!feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             anim.SetBool("inAir", true);
         }
-        rb2d.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
-       
+        else
+        {
+            anim.SetBool("inAir", false);
+        }
     }
 
     void Run()
