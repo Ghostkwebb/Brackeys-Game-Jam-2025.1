@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb2d;
     Vector2 moveInput;
 
+    Animator anim;
+
     public float moveSpeed = 5f;
     public float jumpAmount = 10f;
     public Button button;
@@ -13,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -33,9 +35,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Run()
-    {
+    {   
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb2d.linearVelocity.y);
         rb2d.linearVelocity = playerVelocity;
+        if (moveInput.x != 0)
+        {
+            anim.SetBool("isWalking_RIght", true);
+            bool flipped = moveInput.x < 0;
+            this.transform.rotation = Quaternion.Euler(new Vector3(0f, flipped ? 180f : 0f, 0f));
+        }
+        
+        else
+        {
+            anim.SetBool("isWalking_RIght", false);
+
+        }
     }
 
     void OnInteract(InputValue value)
