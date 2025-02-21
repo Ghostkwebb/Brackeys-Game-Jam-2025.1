@@ -230,7 +230,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164849731}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 1
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 328287246}
   - component: {fileID: 328287245}
   m_Layer: 7
-  m_Name: Button
+  m_Name: DoorEnter
   m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

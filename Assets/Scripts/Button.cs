@@ -25,7 +25,6 @@ public class Button : MonoBehaviour
     }
 
     public void Press(){
-        spriteRenderer.color = Color.red;
         StartCoroutine(LoadNextLevel());
     }
 
