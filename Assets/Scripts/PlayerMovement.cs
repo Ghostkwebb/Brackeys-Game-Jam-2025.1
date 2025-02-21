@@ -30,8 +30,18 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (!rb2d.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
+        if (!rb2d.IsTouchingLayers(LayerMask.GetMask("Ground"))) 
+        {
+            anim.SetBool("inAir", false);
+            return; 
+        }
+
+        else
+        {
+            anim.SetBool("inAir", true);
+        }
         rb2d.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+       
     }
 
     void Run()
