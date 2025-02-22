@@ -13,6 +13,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip slimeMovement;
     public AudioClip jumpSound;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start() {
         bgMusic.clip = backgroundMusic;
         bgMusic.loop = true;
