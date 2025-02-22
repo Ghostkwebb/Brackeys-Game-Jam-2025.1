@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Run();
+        jumpAnimation();
     }
 
     void OnMove(InputValue value)
