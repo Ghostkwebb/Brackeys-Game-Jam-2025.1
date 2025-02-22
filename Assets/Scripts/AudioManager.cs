@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip backgroundMusic;
     public AudioClip buttonClick;
     public AudioClip slimeMovement;
+    public AudioClip jumpSound;
 
     void Start() {
         bgMusic.clip = backgroundMusic;
@@ -38,6 +39,11 @@ public class AudioManager : MonoBehaviour
         SFXSource.Stop();
         SFXSource.loop = false; 
     }
+
+    public void PlayJumpSound() {
+        playSFX(jumpSound);
+    }
+
 
     public void playSFX(AudioClip clip) {
         SFXSource.PlayOneShot(clip);

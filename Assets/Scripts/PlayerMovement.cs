@@ -70,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!rb2d.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
         rb2d.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+        audioManager.PlayJumpSound();
        
     }
 
