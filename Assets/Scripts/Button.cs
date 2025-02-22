@@ -27,7 +27,17 @@ public class Button : MonoBehaviour
     public void Press(){
         StartCoroutine(LoadNextLevel());
     }
+    private IEnumerator LoadNextLevel(){
+        yield return new WaitForSecondsRealtime(2);
+        int currentSeceneIndex =  SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSeceneIndex + 1;
 
+        if(nextSceneIndex == SceneManager.sceneCountInBuildSettings){
+            nextSceneIndex = 0;
+        }
+
+        SceneManager.LoadScene(nextSceneIndex);
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         StartCoroutine(FadeInCanvas());
@@ -48,15 +58,5 @@ public class Button : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadNextLevel(){
-        yield return new WaitForSecondsRealtime(2);
-        int currentSeceneIndex =  SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSeceneIndex + 1;
-
-        if(nextSceneIndex == SceneManager.sceneCountInBuildSettings){
-            nextSceneIndex = 0;
-        }
-
-        SceneManager.LoadScene(nextSceneIndex);
-    }
+    
 }
