@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Player Movement")]
     public float moveSpeed = 5f;
+    private bool isMovingSoundPlaying = false;
     [Header("Player Jump")]
     public float jumpAmount = 10f;
     [Header("Player Button")]
@@ -43,14 +44,21 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.x != 0)
         {
             anim.SetBool("isWalking_RIght", true);
-            audioManager.playSFX(audioManager.slimeMovement);
             bool flipped = moveInput.x < 0;
             this.transform.rotation = Quaternion.Euler(new Vector3(0f, flipped ? 180f : 0f, 0f));
+            if(!isMovingSoundPlaying){
+                audioManager.PlaySlimeMovementSound();
+                isMovingSoundPlaying = true;
+            }
         }
         
         else
         {
             anim.SetBool("isWalking_RIght", false);
+            if(isMovingSoundPlaying){
+                audioManager.StopSlimeMovementSound();
+                isMovingSoundPlaying = false;
+            }
 
         }
     }

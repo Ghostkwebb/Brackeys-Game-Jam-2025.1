@@ -18,15 +18,28 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(playBGMusic());
     }
 
-    public void playSFX(AudioClip clip) {
-        if(clip == slimeMovement) {
-            SFXSource.loop = true;
-        }
-        SFXSource.PlayOneShot(clip);
-    }
-
     IEnumerator playBGMusic() {
         yield return new WaitForSeconds(0.3f);
         bgMusic.Play();
+    }
+
+    public void PlaySlimeMovementSound() {
+        if (!SFXSource.isPlaying && SFXSource.clip != slimeMovement) 
+        {
+            SFXSource.clip = slimeMovement;
+            SFXSource.loop = true; 
+            SFXSource.Play();
+        } else if (!SFXSource.isPlaying && SFXSource.clip == slimeMovement) { 
+            SFXSource.Play();
+        }
+    }
+
+    public void StopSlimeMovementSound() {
+        SFXSource.Stop();
+        SFXSource.loop = false; 
+    }
+
+    public void playSFX(AudioClip clip) {
+        SFXSource.PlayOneShot(clip);
     }
 }
